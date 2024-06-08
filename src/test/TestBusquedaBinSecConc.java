@@ -27,8 +27,9 @@ public class TestBusquedaBinSecConc extends Thread {
     public void run() {
     	
     	//System.out.println("\nhola soy el hilo: " + id);
-		   		
-    	 this.resultado = BusquedaBinSec.busquedaBinaria(array2, objetivo);
+	    
+	//Cada hilo va a tener su propio resultado, por lo tanto no acceden varios hilos a un mismo resultado	   		
+    	this.resultado = BusquedaBinSec.busquedaBinaria(array2, objetivo);
     	
     
     }
@@ -119,6 +120,7 @@ public class TestBusquedaBinSecConc extends Thread {
 			for (int i = 0; i < tamanioHilos; i++) {
 				//Recorre los resultados de cada hilo
 				if (hilos[i].resultado != -1) { // Asume que -1 indica no encontrado
+				    //Se accede a la region critica desde el main
 				    resultado = hilos[i].resultado;
 			        break; // Sale del bucle al encontrar el primer resultado exitoso
 			    }
